@@ -20,7 +20,7 @@
         "@typescript/native-preview": "7.0.0-dev.20260525.1",
         "@willbooster/oxfmt-config": "1.2.2",
         "@willbooster/oxlint-config": "1.4.7",
-        "@willbooster/wb": "13.20.1",
+        "@willbooster/wb": "13.22.3",
         "lefthook": "2.1.8",
         "oxfmt": "0.51.0",
         "oxlint": "1.66.0",
@@ -243,7 +243,7 @@
 
     "@willbooster/oxlint-config": ["@willbooster/oxlint-config@1.4.7", "", { "peerDependencies": { "oxlint": ">=1.60.0", "oxlint-tsgolint": ">=0.18.1" } }, "sha512-JB8slThKftPhpLqBwjPtbJzl3UFnzjgIpPI4mIo00I5ywrj+J8sHMfNt51DF6Ym9t0W6iKV880ych3hHgkoBuQ=="],
 
-    "@willbooster/wb": ["@willbooster/wb@13.20.1", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fastest-levenshtein": "1.0.16", "globby": "16.2.0", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.2", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-tBy62V5p3KKcl9RJDbr5Sw0Xu9ufG1XgKVVgpSkAC8gpaaXtzL55J7vvrGYfGsFL51q/gpxCQ4iYoeEf3YVV3g=="],
+    "@willbooster/wb": ["@willbooster/wb@13.22.3", "", { "dependencies": { "chalk": "5.6.2", "dotenv": "17.4.2", "dotenv-expand": "13.0.0", "fastest-levenshtein": "1.0.16", "globby": "16.2.0", "kill-port": "2.0.1", "minimal-promise-pool": "6.0.2", "yargs": "18.0.0" }, "bin": { "wb": "bin/index.js" } }, "sha512-wQCU02rutYOVhRKz/uFCPh20JXyKl8S2jjQ/N7P7B3/QMgtKwSO/Vc+2dhAhYzn53+MjciErWWZiapI3FnlCXA=="],
 
     "ansi-regex": ["ansi-regex@6.2.2", "", {}, "sha512-Bq3SmSpyFHaWjPk8If9yc6svM8c56dB5BAtW4Qbw5jHTwwXXcTLoRMkpDJp6VL0XzlWaCHTXrkFURMYmD0sLqg=="],
 

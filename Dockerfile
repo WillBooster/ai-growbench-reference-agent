@@ -11,7 +11,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY package.json tsconfig.json next.config.ts bun.lock ./
-RUN bun install --frozen-lockfile
+RUN bun install
 
 COPY src ./src
 
