@@ -24,8 +24,8 @@
     "verify-full": "bun --bun wb verify --full"
   },
   "dependencies": {
-    "@openai/codex": "0.139.0",
-    "@openai/codex-sdk": "0.139.0",
+    "@openai/codex": "0.141.0",
+    "@openai/codex-sdk": "0.141.0",
     "next": "16.2.9",
     "react": "19.2.7",
     "react-dom": "19.2.7",
