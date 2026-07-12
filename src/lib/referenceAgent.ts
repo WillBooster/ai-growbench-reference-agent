@@ -1,4 +1,4 @@
-import { cp, mkdtemp } from 'node:fs/promises';
+import { cp, mkdtemp, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
@@ -54,6 +54,17 @@ export async function acceptReferenceAttempt(request: AttemptStartRequest): Prom
 }
 
 async function runCodexGeneration(request: AttemptStartRequest): Promise<string> {
+  const workspace = await createAttemptWorkspace(request.attempt.id);
+  try {
+    return await runCodexTurn(request, workspace);
+  } finally {
+    // Generated apps routinely include node_modules, so a long-lived process would fill the disk
+    // without this cleanup; the deployed app itself lives on the hosting provider, not here.
+    await rm(workspace, { recursive: true, force: true });
+  }
+}
+
+async function runCodexTurn(request: AttemptStartRequest, workspace: string): Promise<string> {
   const codex = new Codex({ codexPathOverride: codexCliPath() });
   const thread = codex.startThread({
     approvalPolicy: 'never',
@@ -62,7 +73,7 @@ async function runCodexGeneration(request: AttemptStartRequest): Promise<string>
     sandboxMode: 'workspace-write',
     // The per-attempt scratch directory is created outside any git repository on purpose.
     skipGitRepoCheck: true,
-    workingDirectory: await createAttemptWorkspace(request.attempt.id),
+    workingDirectory: workspace,
   });
   const { stage, currentPrompt, task } = request.problemData;
   const turn = await thread.run(`You are the generic AI Growbench reference agent.
@@ -132,7 +143,10 @@ Do not use any bundled fallback application or hard-coded problem knowledge.`);
  * Codex discovers them relative to its working directory.
  */
 async function createAttemptWorkspace(attemptId: string): Promise<string> {
-  const workspace = await mkdtemp(join(tmpdir(), `ai-growbench-${attemptId}-`));
+  // The attempt id crosses a trust boundary (HTTP body), so strip anything path-like before
+  // embedding it in the temp directory prefix.
+  const safeAttemptId = attemptId.replaceAll(/[^\w-]/gu, '').slice(0, 80);
+  const workspace = await mkdtemp(join(tmpdir(), `ai-growbench-${safeAttemptId}-`));
   await cp(join(process.cwd(), '.agents'), join(workspace, '.agents'), { recursive: true, force: true }).catch(() => {
     // The .agents directory is optional; Codex still runs without bundled skills.
   });
