@@ -44,7 +44,9 @@ export async function POST(request: Request): Promise<Response> {
   if (request.headers.get('authorization') !== `Bearer ${expected}`) {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const parsed = schema.safeParse(await request.json());
+  const body = await request.json().catch(() => {});
+  if (body === undefined) return json({ error: 'Invalid JSON body' }, { status: 400 });
+  const parsed = schema.safeParse(body);
   if (!parsed.success) return json({ error: parsed.error.message }, { status: 400 });
   await acceptReferenceAttempt(parsed.data);
   return json({ status: 'accepted', agentMetadata }, { status: 202 });
