@@ -1,32 +1,41 @@
 import { z } from 'zod';
 
 import { json } from '@/lib/http';
-import { acceptReferenceAttempt } from '@/lib/referenceAgent';
+import { acceptReferenceAttempt, agentMetadata } from '@/lib/referenceAgent';
 
 const schema = z.object({
-  attemptId: z.string(),
-  taskId: z.string(),
-  mode: z.string().optional(),
-  stage: z.object({
-    currentIndex: z.number().optional(),
-    passedCount: z.number(),
-    totalCount: z.number(),
-  }),
-  currentPrompt: z.object({
+  attempt: z.object({
     id: z.string(),
-    index: z.number(),
-    title: z.string(),
-    requirements: z.string(),
   }),
-  task: z.object({
-    title: z.string(),
-    domIds: z.record(z.string(), z.string()),
+  problemData: z.object({
+    taskId: z.string(),
+    mode: z.string().optional(),
+    stage: z.object({
+      currentIndex: z.number().optional(),
+      passedCount: z.number(),
+      totalCount: z.number(),
+    }),
+    currentPrompt: z
+      .object({
+        id: z.string(),
+        index: z.number(),
+        title: z.string(),
+        requirements: z.string(),
+      })
+      .optional(),
+    task: z.object({
+      title: z.string(),
+      domIds: z.record(z.string(), z.string()),
+    }),
   }),
-  submission: z.object({
-    method: z.literal('POST'),
-    url: z.string().url(),
-    statusUrl: z.string().url(),
-    token: z.string(),
+  deliveryProtocol: z.object({
+    type: z.literal('agentApi'),
+    submission: z.object({
+      method: z.literal('POST'),
+      url: z.string().url(),
+      statusUrl: z.string().url(),
+      token: z.string(),
+    }),
   }),
 });
 
@@ -38,5 +47,5 @@ export async function POST(request: Request): Promise<Response> {
   const parsed = schema.safeParse(await request.json());
   if (!parsed.success) return json({ error: parsed.error.message }, { status: 400 });
   await acceptReferenceAttempt(parsed.data);
-  return json({ status: 'accepted' }, { status: 202 });
+  return json({ status: 'accepted', agentMetadata }, { status: 202 });
 }
