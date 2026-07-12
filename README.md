@@ -24,7 +24,7 @@ All endpoints except `/api/ping` require `Authorization: Bearer ${REFERENCE_AGEN
 ## Environment variables
 
 - `REFERENCE_AGENT_API_KEY`: shared secret registered in AI Growbench (defaults to `development-reference-agent-key`).
-- `CODEX_MODEL` (optional): model used for Codex runs. Defaults to `gpt-5.6-luna`.
+- `CODEX_MODEL` (optional): model used for Codex runs. Defaults to `gpt-5.6-sol`.
 - `CODEX_CLI_PATH` (optional): path to the Codex CLI. Defaults to the bundled `node_modules/@openai/codex/bin/codex.js`.
 
 ## Development

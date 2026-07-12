@@ -146,7 +146,7 @@ ${prompt.requirements}`;
 }
 
 function codexModel(): string {
-  return process.env.CODEX_MODEL ?? 'gpt-5.6-luna';
+  return process.env.CODEX_MODEL ?? 'gpt-5.6-sol';
 }
 
 function codexCliPath(): string {
