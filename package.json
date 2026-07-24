@@ -11,17 +11,17 @@
   "author": "WillBooster Inc.",
   "scripts": {
     "build": "next build",
-    "cleanup": "bun --bun wb lint --fix --format",
+    "cleanup": "bun wb lint --fix --format",
     "dev": "next dev",
-    "format": "bun --bun wb lint --format",
-    "lint": "bun --bun wb lint",
-    "lint-fix": "bun --bun wb lint --fix",
+    "format": "bun wb lint --format",
+    "lint": "bun wb lint",
+    "lint-fix": "bun wb lint --fix",
     "prepare": "lefthook install || true",
     "start": "next start",
     "test": "bun wb test",
-    "typecheck": "bun --bun wb typecheck",
-    "verify": "bun --bun wb verify",
-    "verify-full": "bun --bun wb verify --full"
+    "typecheck": "bun wb typecheck",
+    "verify": "bun wb verify",
+    "verify-full": "bun wb verify --full"
   },
   "dependencies": {
     "@openai/codex": "0.144.3",
@@ -39,12 +39,13 @@
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "@willbooster/oxfmt-config": "1.2.2",
     "@willbooster/oxlint-config": "1.4.8",
-    "@willbooster/wb": "13.28.8",
+    "@willbooster/wb": "18.0.1",
+    "babel-plugin-react-compiler": "1.0.0",
     "lefthook": "2.1.10",
-    "oxfmt": "0.58.0",
-    "oxlint": "1.73.0",
-    "oxlint-tsgolint": "0.24.0",
-    "sort-package-json": "3.7.1",
-    "typescript": "6.0.3"
+    "oxfmt": "0.60.0",
+    "oxlint": "1.75.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "sort-package-json": "4.0.0",
+    "typescript": "7.0.2"
   }
 }
