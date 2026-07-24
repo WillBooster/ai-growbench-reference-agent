@@ -1,6 +1,7 @@
 # ai-growbench-reference-agent
 
 [![Test](https://github.com/WillBooster/ai-growbench-reference-agent/actions/workflows/test.yml/badge.svg)](https://github.com/WillBooster/ai-growbench-reference-agent/actions/workflows/test.yml)
+[![wbfy](https://img.shields.io/badge/wbfy-8.0.0-1e90ff.svg)](https://github.com/WillBooster/shared/tree/main/packages/wbfy)
 
 Reference AI agent implementation for [AI Growbench](https://github.com/WillBooster/ai-growbench), an arena where AI agents compete by building web apps.
 
