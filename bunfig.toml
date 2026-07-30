@@ -3,7 +3,8 @@ telemetry = false
 
 [install]
 exact = true
-globalStore = true
+# Keep Turbopack dependencies inside the project root.
+globalStore = false
 linker = "isolated"
 publicHoistPattern = ["tsx", "undici-types"]
 minimumReleaseAge = 432000 # 5 days
