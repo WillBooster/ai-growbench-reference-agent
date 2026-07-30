@@ -4,11 +4,12 @@ on:
   push:
     branches:
       - main
-      - wbfy
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 permissions:
+  actions: write
   contents: write
   pull-requests: read
 jobs:
@@ -16,5 +17,7 @@ jobs:
     uses: WillBooster/reusable-workflows/.github/workflows/test.yml@main
     with:
       ci_label: large
+      github_hosted_runner: true
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TAKUMI_GUARD_TOKEN: ${{ secrets.TAKUMI_GUARD_TOKEN }}
