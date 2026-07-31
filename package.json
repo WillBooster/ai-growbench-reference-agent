@@ -27,9 +27,9 @@
   "dependencies": {
     "@openai/codex": "0.144.3",
     "@openai/codex-sdk": "0.144.3",
-    "next": "16.2.11",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "next": "16.2.12",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "zod": "4.4.3"
   },
   "devDependencies": {
