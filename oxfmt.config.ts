@@ -1,5 +1,4 @@
 // wbfy:start oxfmt-base
-/// <reference types="node" />
 import type { OxfmtConfig } from 'oxfmt';
 
 // oxlint-disable unicorn/prefer-module -- Oxfmt config files are only auto-discovered as .ts, and CommonJS avoids ESM package loading issues.
