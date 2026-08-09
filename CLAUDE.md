@@ -25,6 +25,7 @@
 - Put temporary files in `.tmp`; use `/tmp` only for files that must live outside the repo.
 - Tool versions (node, bun, and others) are pinned in `mise.toml`; run `mise install` after changing it, and never install those tools globally instead.
 - `bunfig.toml` uses Bun's isolated linker, so only declared dependencies resolve. If an import fails to resolve, declare that package in the `package.json` that imports it; never switch `linker` to `hoisted` or add to `publicHoistPattern` to work around it.
+- Railway project information is in the deploy workflows under `.github/workflows`.
 
 ## Coding Style
 
